@@ -1,7 +1,3 @@
-"""
-Tic Tac Toe Player
-"""
-
 import math
 import copy
 
@@ -11,18 +7,14 @@ EMPTY = None
 
 
 def initial_state():
-    """
-    Returns starting state of the board.
-    """
+
     return [[EMPTY, EMPTY, EMPTY],
             [EMPTY, EMPTY, EMPTY],
             [EMPTY, EMPTY, EMPTY]]
 
 
 def player(board):
-    """
-    Returns player who has the next turn on a board.
-    """
+
     xCounter = 0
     oCounter = 0
 
@@ -40,9 +32,7 @@ def player(board):
 
 
 def actions(board):
-    """
-    Returns set of all possible actions (i, j) available on the board.
-    """
+
     possibleActions = set()
 
     for i in range(0, len(board)):
@@ -54,9 +44,7 @@ def actions(board):
 
 
 def result(board, action):
-    """
-    Returns the board that results from making move (i, j) on the board.
-    """
+
     # Create new board, without modifying the original board received as input
     result = copy.deepcopy(board)
     result[action[0]][action[1]] = player(board)
@@ -64,9 +52,7 @@ def result(board, action):
 
 
 def winner(board):
-    """
-    Returns the winner of the game, if there is one.
-    """
+
     # Check rows
     if all(i == board[0][0] for i in board[0]):
         return board[0][0]
@@ -91,9 +77,7 @@ def winner(board):
 
 
 def terminal(board):
-    """
-    Returns True if game is over, False otherwise.
-    """
+
 
     if winner(board) is not None or (not any(EMPTY in sublist for sublist in board) and winner(board) is None):
         return True
@@ -103,9 +87,7 @@ def terminal(board):
 
 
 def utility(board):
-    """
-    Returns 1 if X has won the game, -1 if O has won, 0 otherwise.
-    """
+
     if terminal(board):
         if winner(board) == X:
             return 1
@@ -117,9 +99,7 @@ def utility(board):
 
 
 def minimax(board):
-    """
-    Returns the optimal action for the current player on the board.
-    """
+
     if terminal(board):
         return None
     else:
@@ -165,4 +145,3 @@ def min_value(board):
                 return v, move
 
     return v, move
-    
